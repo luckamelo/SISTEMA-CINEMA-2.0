@@ -3,7 +3,7 @@ public class Filme {
     private String diretor;
     private String descricao;
     private String genero;
-    private int duracao; // em minutos
+    private int duracao; 
 
     public Filme(String nome, String diretor, String descricao, String genero, int duracao) {
         this.nome = nome;
@@ -13,7 +13,6 @@ public class Filme {
         this.duracao = duracao;
     }
 
-    
     public String getNome() {
         return nome;
     }
