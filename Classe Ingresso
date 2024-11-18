@@ -1,54 +1,16 @@
-public void comprarIngresso() {
-    exibirFilmes();
+public class Ingresso {
+    private Filme filme;
+    private String tipoIngresso;
+    private String horarioSessao;
 
-    int opcaoFilme;
-    do {
-        System.out.print("\nDigite o número do filme desejado (1-5): ");
-        opcaoFilme = scanner.nextInt();
-    } while (opcaoFilme < 1 || opcaoFilme > 5);
-
-    Filme filmeEscolhido = filmes.get(opcaoFilme - 1);
-
-    exibirSessoes();
-
-    int opcaoSessao;
-    do {
-        System.out.print("\nDigite o número da sessão desejada (1-4): ");
-        opcaoSessao = scanner.nextInt();
-    } while (opcaoSessao < 1 || opcaoSessao > 4);
-
-    String horarioSessao = sessoes.get(opcaoSessao - 1);
-
-    scanner.nextLine();
-
-    System.out.print("\nDigite a quantidade de ingressos inteiros: ");
-    int quantidadeInteiro;
-    while ((quantidadeInteiro = scanner.nextInt()) < 0) {
-        System.out.print("Quantidade inválida. Digite novamente: ");
+    public Ingresso(Filme filme, String tipoIngresso, String horarioSessao) {
+        this.filme = filme;
+        this.tipoIngresso = tipoIngresso;
+        this.horarioSessao = horarioSessao;
     }
 
-    System.out.print("Digite a quantidade de ingressos meia-entrada: ");
-    int quantidadeMeia;
-    while ((quantidadeMeia = scanner.nextInt()) < 0) {
-        System.out.print("Quantidade inválida. Digite novamente: ");
+    @Override
+    public String toString() {
+        return "Filme: " + filme.getNome() + "\nTipo de Ingresso: " + tipoIngresso + "\nHorário: " + horarioSessao;
     }
-
-    double total = calcularTotal(quantidadeInteiro, quantidadeMeia);
-
-    String tipoIngresso = "";
-    if (quantidadeInteiro > 0) {
-        tipoIngresso += "Inteiro";
-    }
-    if (quantidadeMeia > 0) {
-        if (!tipoIngresso.isEmpty()) tipoIngresso += " e ";
-        tipoIngresso += "Meia-entrada";
-    }
-
-    Ingresso ingresso = new Ingresso(filmeEscolhido, tipoIngresso, horarioSessao);
-
-    System.out.println("\nResumo da compra:");
-    System.out.println(ingresso);
-    System.out.println("Ingressos Inteiros: " + quantidadeInteiro);
-    System.out.println("Ingressos Meia-Entrada: " + quantidadeMeia);
-    System.out.println("Total a Pagar: R$ " + total);
 }
