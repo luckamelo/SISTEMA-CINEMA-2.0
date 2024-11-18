@@ -1,0 +1,45 @@
+public void comprarIngresso() {
+    exibirFilmes(); // Exibe os filmes disponíveis.
+
+    int opcaoFilme;
+    do {
+        System.out.print("\nDigite o número do filme desejado (1-5): ");
+        opcaoFilme = scanner.nextInt();
+    } while (opcaoFilme < 1 || opcaoFilme > 5);
+
+    Filme filmeEscolhido = filmes.get(opcaoFilme - 1); // Seleciona o filme escolhido.
+
+    exibirSessoes(); // Exibe as sessões disponíveis.
+
+    int opcaoSessao;
+    do {
+        System.out.print("\nDigite o número da sessão desejada (1-4): ");
+        opcaoSessao = scanner.nextInt();
+    } while (opcaoSessao < 1 || opcaoSessao > 4);
+
+    String horarioSessao = sessoes.get(opcaoSessao - 1); // Seleciona a sessão escolhida.
+
+    
+    scanner.nextLine(); 
+
+    System.out.print("\nDigite a quantidade de ingressos inteiros: ");
+    int quantidadeInteiro = scanner.nextInt();
+
+    System.out.print("Digite a quantidade de ingressos meia-entrada: ");
+    int quantidadeMeia = scanner.nextInt();
+
+    
+    double total = calcularTotal(quantidadeInteiro, quantidadeMeia);
+
+    String tipoIngresso = (quantidadeInteiro > 0) ? "Inteiro" : "Meia-entrada";
+
+    
+    Ingresso ingresso = new Ingresso(filmeEscolhido, tipoIngresso, horarioSessao);
+
+   
+    System.out.println("\nResumo da compra:");
+    System.out.println(ingresso); // Exibe o ingresso com o filme, horário e tipo de ingresso
+    System.out.println("Ingressos Inteiros: " + quantidadeInteiro);
+    System.out.println("Ingressos Meia-Entrada: " + quantidadeMeia);
+    System.out.println("Total a Pagar: R$ " + total);
+}
